@@ -1,0 +1,481 @@
+INFO 10-16 12:38:35 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+vllm_omni imported from <scratch>/vllm-omni-histnoise/vllm_omni
+=== PR variant prfix-bf16: bwm_world_model.py --model <scratch>/models/BWM --episode-dir <scratch>/episode141 --episode 0 --output <scratch>/runs/prfix-bf16/rollout.mp4 --num-inference-steps 50 --seed 42 --enforce-eager
+Episode 0: 141 action frames, 480x640, task=adjust_bottle
+INFO 10-16 12:38:37 [omni_base.py:167] [Omni] Initializing with model <scratch>/models/BWM
+INFO 10-16 12:38:37 [async_omni_engine.py:239] [AsyncOmniEngine] Initializing with model <scratch>/models/BWM
+INFO 10-16 12:38:37 [async_omni_engine.py:301] [AsyncOmniEngine] Launching Orchestrator thread with 1 stages
+INFO 10-16 12:38:37 [stage_init_utils.py:443] [stage_init] Set VLLM_WORKER_MULTIPROC_METHOD=spawn
+INFO 10-16 12:38:37 [multiproc_executor.py:188] Starting server...
+INFO 10-16 12:38:44 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-16 12:38:45 [diffusion_worker.py:776] Worker 0 created result MessageQueue
+INFO 10-16 12:38:45 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-16 12:38:45 [vllm.py:1006] Asynchronous scheduling is enabled.
+INFO 10-16 12:38:45 [kernel.py:276] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-16 12:38:45 [diffusion_worker.py:291] Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-16 12:38:45 [diffusion_worker.py:303] Worker 0: Initialized device and distributed environment.
+INFO 10-16 12:38:45 [parallel_state.py:603] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+INFO 10-16 12:38:45 [parallel_state.py:645] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+The config attributes {'clip_output': False} were passed to DistributedAutoencoderKLWan, but are not expected and will be ignored. Please verify your config.json configuration file.
+INFO 10-16 12:38:46 [selector.py:87] Resolved diffusion attention backend 'FLASH_ATTN' for role='self' via platform default
+INFO 10-16 12:38:46 [selector.py:87] Resolved diffusion attention backend 'FLASH_ATTN' for role='cross' via platform default
+
+Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:01<00:00,  1.43s/it]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:01<00:00,  1.43s/it]
+
+
+Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.84it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.84it/s]
+
+INFO 10-16 12:38:48 [diffusers_loader.py:428] Loading weights took 1.60 seconds
+INFO 10-16 12:38:48 [diffusion_model_runner.py:209] Model loading took 10.7307 GiB and 3.280049 seconds
+INFO 10-16 12:38:48 [diffusion_model_runner.py:214] Model runner: Model loaded successfully.
+INFO 10-16 12:38:48 [diffusion_model_runner.py:288] Model runner: Initialization complete.
+INFO 10-16 12:38:49 [diffusion_worker.py:361] Worker 0: Process-scoped GPU memory after model loading: 11.34 GiB.
+INFO 10-16 12:38:49 [manager.py:96] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+INFO 10-16 12:38:49 [diffusion_worker.py:252] Worker 0: Initialization complete.
+INFO 10-16 12:38:49 [diffusion_worker.py:1012] Worker 0: Scheduler loop started.
+INFO 10-16 12:38:49 [diffusion_worker.py:904] Worker 0 ready to receive requests via shared memory
+INFO 10-16 12:38:49 [diffusion_engine.py:821] Skipping dummy warmup run (num_frames=0)
+INFO 10-16 12:38:49 [inline_stage_diffusion_client.py:72] [InlineStageDiffusionClient] stage-0 [rep-0] initialized inline (batch_size=1)
+INFO 10-16 12:38:49 [stage_runtime.py:656] [StageRuntime] Stage 0 replica 0 initialized (diffusion, batch_size=1)
+INFO 10-16 12:38:49 [orchestrator.py:332] [Orchestrator] Starting event loop
+INFO 10-16 12:38:49 [async_omni_engine.py:328] [AsyncOmniEngine] Orchestrator ready with 1 stages
+INFO 10-16 12:38:49 [omni_base.py:185] [Omni] AsyncOmniEngine initialized in 12.11 seconds
+INFO 10-16 12:38:49 [omni_base.py:205] [Omni] Initialized with 1 stages for model <scratch>/models/BWM
+[window 0] history=0..0 future=[1, 49) chunk=57
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  2%|▏         | 1/50 [00:00<00:24,  2.04it/s]
+  6%|▌         | 3/50 [00:00<00:08,  5.75it/s]
+ 10%|█         | 5/50 [00:00<00:06,  7.36it/s]
+ 14%|█▍        | 7/50 [00:01<00:05,  8.27it/s]
+ 18%|█▊        | 9/50 [00:01<00:04,  8.89it/s]
+ 22%|██▏       | 11/50 [00:01<00:04,  8.96it/s]
+ 24%|██▍       | 12/50 [00:01<00:04,  9.11it/s]
+ 26%|██▌       | 13/50 [00:01<00:04,  9.23it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.39it/s]
+ 30%|███       | 15/50 [00:01<00:03,  9.51it/s]
+ 34%|███▍      | 17/50 [00:02<00:03,  9.71it/s]
+ 36%|███▌      | 18/50 [00:02<00:03,  9.76it/s]
+ 40%|████      | 20/50 [00:02<00:03,  9.75it/s]
+ 42%|████▏     | 21/50 [00:02<00:02,  9.69it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.70it/s]
+ 46%|████▌     | 23/50 [00:02<00:02,  9.69it/s]
+ 50%|█████     | 25/50 [00:02<00:02,  9.79it/s]
+ 54%|█████▍    | 27/50 [00:03<00:02,  9.84it/s]
+ 58%|█████▊    | 29/50 [00:03<00:02,  9.85it/s]
+ 60%|██████    | 30/50 [00:03<00:02,  9.79it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.77it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.73it/s]
+ 66%|██████▌   | 33/50 [00:03<00:01,  9.73it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.84it/s]
+ 74%|███████▍  | 37/50 [00:04<00:01,  9.94it/s]
+ 76%|███████▌  | 38/50 [00:04<00:01,  9.91it/s]
+ 78%|███████▊  | 39/50 [00:04<00:01,  9.86it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.79it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.77it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.76it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.77it/s]
+ 90%|█████████ | 45/50 [00:04<00:00,  9.87it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00,  9.85it/s]
+ 94%|█████████▍| 47/50 [00:05<00:00,  9.89it/s]
+ 96%|█████████▌| 48/50 [00:05<00:00,  9.85it/s]
+ 98%|█████████▊| 49/50 [00:05<00:00,  9.82it/s]
+100%|██████████| 50/50 [00:05<00:00,  8.06it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.12it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:07<00:00,  7.44s/it]
+Processed prompts: 100%|██████████| 1/1 [00:07<00:00,  7.44s/it]
+[window 1] history=0..48 future=[49, 97) chunk=57
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 14.71it/s]
+  8%|▊         | 4/50 [00:00<00:03, 11.96it/s]
+ 12%|█▏        | 6/50 [00:00<00:04, 10.95it/s]
+ 16%|█▌        | 8/50 [00:00<00:03, 10.62it/s]
+ 20%|██        | 10/50 [00:00<00:03, 10.10it/s]
+ 24%|██▍       | 12/50 [00:01<00:03,  9.99it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.96it/s]
+ 32%|███▏      | 16/50 [00:01<00:03,  9.97it/s]
+ 36%|███▌      | 18/50 [00:01<00:03,  9.90it/s]
+ 38%|███▊      | 19/50 [00:01<00:03,  9.78it/s]
+ 40%|████      | 20/50 [00:01<00:03,  9.70it/s]
+ 42%|████▏     | 21/50 [00:02<00:02,  9.67it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.70it/s]
+ 46%|████▌     | 23/50 [00:02<00:02,  9.72it/s]
+ 50%|█████     | 25/50 [00:02<00:02,  9.86it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02,  9.86it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02,  9.86it/s]
+ 58%|█████▊    | 29/50 [00:02<00:02,  9.77it/s]
+ 60%|██████    | 30/50 [00:02<00:02,  9.75it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.75it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.75it/s]
+ 66%|██████▌   | 33/50 [00:03<00:01,  9.78it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.84it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01,  9.83it/s]
+ 74%|███████▍  | 37/50 [00:03<00:01,  9.80it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01,  9.76it/s]
+ 78%|███████▊  | 39/50 [00:03<00:01,  9.73it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.71it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.72it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.73it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.73it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00,  9.75it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00,  9.84it/s]
+ 94%|█████████▍| 47/50 [00:04<00:00,  9.79it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00,  9.78it/s]
+ 98%|█████████▊| 49/50 [00:04<00:00,  9.74it/s]
+100%|██████████| 50/50 [00:05<00:00,  8.03it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.78it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.67s/it]
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.67s/it]
+[window 2] history=0..96 future=[97, 141) chunk=53
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 14.91it/s]
+  8%|▊         | 4/50 [00:00<00:03, 12.99it/s]
+ 12%|█▏        | 6/50 [00:00<00:03, 11.97it/s]
+ 16%|█▌        | 8/50 [00:00<00:03, 11.57it/s]
+ 20%|██        | 10/50 [00:00<00:03, 11.14it/s]
+ 24%|██▍       | 12/50 [00:01<00:03, 10.74it/s]
+ 28%|██▊       | 14/50 [00:01<00:03, 10.82it/s]
+ 32%|███▏      | 16/50 [00:01<00:03, 10.89it/s]
+ 36%|███▌      | 18/50 [00:01<00:02, 10.94it/s]
+ 40%|████      | 20/50 [00:01<00:02, 10.86it/s]
+ 44%|████▍     | 22/50 [00:01<00:02, 10.56it/s]
+ 48%|████▊     | 24/50 [00:02<00:02, 10.63it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02, 10.72it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02, 10.81it/s]
+ 60%|██████    | 30/50 [00:02<00:01, 10.81it/s]
+ 64%|██████▍   | 32/50 [00:02<00:01, 10.61it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01, 10.54it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01, 10.66it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01, 10.74it/s]
+ 80%|████████  | 40/50 [00:03<00:00, 10.75it/s]
+ 84%|████████▍ | 42/50 [00:03<00:00, 10.68it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00, 10.59it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00, 10.64it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00, 10.69it/s]
+100%|██████████| 50/50 [00:04<00:00,  9.67it/s]
+100%|██████████| 50/50 [00:04<00:00, 10.70it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.13s/it]
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.13s/it]
+Wrote 141 frames -> <scratch>/runs/prfix-bf16/rollout.mp4
+{
+  "variant": "prfix-bf16",
+  "argv": [
+    "bwm_world_model.py",
+    "--model",
+    "<scratch>/models/BWM",
+    "--episode-dir",
+    "<scratch>/episode141",
+    "--episode",
+    "0",
+    "--output",
+    "<scratch>/runs/prfix-bf16/rollout.mp4",
+    "--num-inference-steps",
+    "50",
+    "--seed",
+    "42",
+    "--enforce-eager"
+  ],
+  "omni_kwargs": {
+    "model": "<scratch>/models/BWM",
+    "model_class_name": "BoundlessWorldModelPipeline",
+    "enforce_eager": "True"
+  },
+  "vllm_omni_package": "<scratch>/vllm-omni-histnoise/vllm_omni",
+  "windows": [
+    {
+      "window": 0,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 42,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 7.442
+    },
+    {
+      "window": 1,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 43,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.67
+    },
+    {
+      "window": 2,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        53,
+        14
+      ],
+      "num_frames": 53,
+      "seed": 44,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.133
+    }
+  ],
+  "rollout_seconds": 33.61
+}
+=== PR variant prfix-bf16-nocarry:nocarry: bwm_world_model.py --model <scratch>/models/BWM --episode-dir <scratch>/episode141 --episode 0 --output <scratch>/runs/prfix-bf16-nocarry/rollout.mp4 --num-inference-steps 50 --seed 42 --enforce-eager
+Episode 0: 141 action frames, 480x640, task=adjust_bottle
+[window 0] history=0..0 future=[1, 49) chunk=57
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 14.52it/s]
+  8%|▊         | 4/50 [00:00<00:03, 11.81it/s]
+ 12%|█▏        | 6/50 [00:00<00:04, 10.90it/s]
+ 16%|█▌        | 8/50 [00:00<00:04, 10.47it/s]
+ 20%|██        | 10/50 [00:00<00:04,  9.88it/s]
+ 24%|██▍       | 12/50 [00:01<00:03,  9.90it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.92it/s]
+ 30%|███       | 15/50 [00:01<00:03,  9.92it/s]
+ 32%|███▏      | 16/50 [00:01<00:03,  9.92it/s]
+ 36%|███▌      | 18/50 [00:01<00:03,  9.98it/s]
+ 38%|███▊      | 19/50 [00:01<00:03,  9.79it/s]
+ 40%|████      | 20/50 [00:01<00:03,  9.67it/s]
+ 42%|████▏     | 21/50 [00:02<00:02,  9.69it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.70it/s]
+ 48%|████▊     | 24/50 [00:02<00:02,  9.82it/s]
+ 50%|█████     | 25/50 [00:02<00:02,  9.86it/s]
+ 54%|█████▍    | 27/50 [00:02<00:02,  9.93it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02,  9.85it/s]
+ 58%|█████▊    | 29/50 [00:02<00:02,  9.74it/s]
+ 60%|██████    | 30/50 [00:02<00:02,  9.63it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.66it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.70it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01,  9.84it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.87it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01,  9.86it/s]
+ 74%|███████▍  | 37/50 [00:03<00:01,  9.81it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01,  9.74it/s]
+ 78%|███████▊  | 39/50 [00:03<00:01,  9.71it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.69it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.68it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.69it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.73it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00,  9.76it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00,  9.84it/s]
+ 94%|█████████▍| 47/50 [00:04<00:00,  9.81it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00,  9.75it/s]
+ 98%|█████████▊| 49/50 [00:04<00:00,  9.71it/s]
+100%|██████████| 50/50 [00:05<00:00,  8.05it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.77it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.68s/it]
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.68s/it]
+[window 1] history=0..48 future=[49, 97) chunk=57
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 14.62it/s]
+  8%|▊         | 4/50 [00:00<00:03, 11.97it/s]
+ 12%|█▏        | 6/50 [00:00<00:04, 11.00it/s]
+ 16%|█▌        | 8/50 [00:00<00:03, 10.55it/s]
+ 20%|██        | 10/50 [00:00<00:04,  9.94it/s]
+ 24%|██▍       | 12/50 [00:01<00:03,  9.90it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.90it/s]
+ 32%|███▏      | 16/50 [00:01<00:03,  9.97it/s]
+ 36%|███▌      | 18/50 [00:01<00:03,  9.93it/s]
+ 38%|███▊      | 19/50 [00:01<00:03,  9.80it/s]
+ 40%|████      | 20/50 [00:01<00:03,  9.70it/s]
+ 42%|████▏     | 21/50 [00:02<00:02,  9.68it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.68it/s]
+ 46%|████▌     | 23/50 [00:02<00:02,  9.72it/s]
+ 48%|████▊     | 24/50 [00:02<00:02,  9.74it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02,  9.81it/s]
+ 54%|█████▍    | 27/50 [00:02<00:02,  9.82it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02,  9.74it/s]
+ 58%|█████▊    | 29/50 [00:02<00:02,  9.68it/s]
+ 60%|██████    | 30/50 [00:02<00:02,  9.66it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.66it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.67it/s]
+ 66%|██████▌   | 33/50 [00:03<00:01,  9.74it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01,  9.81it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.83it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01,  9.85it/s]
+ 74%|███████▍  | 37/50 [00:03<00:01,  9.81it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01,  9.73it/s]
+ 78%|███████▊  | 39/50 [00:03<00:01,  9.70it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.67it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.66it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.67it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.71it/s]
+ 90%|█████████ | 45/50 [00:04<00:00,  9.85it/s]
+ 94%|█████████▍| 47/50 [00:04<00:00,  9.89it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00,  9.83it/s]
+ 98%|█████████▊| 49/50 [00:04<00:00,  9.80it/s]
+100%|██████████| 50/50 [00:05<00:00,  8.18it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.76it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.68s/it]
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.68s/it]
+[window 2] history=0..96 future=[97, 141) chunk=53
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 15.13it/s]
+  8%|▊         | 4/50 [00:00<00:03, 13.18it/s]
+ 12%|█▏        | 6/50 [00:00<00:03, 12.07it/s]
+ 16%|█▌        | 8/50 [00:00<00:03, 11.60it/s]
+ 20%|██        | 10/50 [00:00<00:03, 11.14it/s]
+ 24%|██▍       | 12/50 [00:01<00:03, 10.64it/s]
+ 28%|██▊       | 14/50 [00:01<00:03, 10.72it/s]
+ 32%|███▏      | 16/50 [00:01<00:03, 10.82it/s]
+ 36%|███▌      | 18/50 [00:01<00:02, 10.88it/s]
+ 40%|████      | 20/50 [00:01<00:02, 10.79it/s]
+ 44%|████▍     | 22/50 [00:01<00:02, 10.57it/s]
+ 48%|████▊     | 24/50 [00:02<00:02, 10.59it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02, 10.70it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02, 10.76it/s]
+ 60%|██████    | 30/50 [00:02<00:01, 10.76it/s]
+ 64%|██████▍   | 32/50 [00:02<00:01, 10.58it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01, 10.57it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01, 10.66it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01, 10.73it/s]
+ 80%|████████  | 40/50 [00:03<00:00, 10.75it/s]
+ 84%|████████▍ | 42/50 [00:03<00:00, 10.65it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00, 10.61it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00, 10.63it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00, 10.70it/s]
+100%|██████████| 50/50 [00:04<00:00,  9.68it/s]
+100%|██████████| 50/50 [00:04<00:00, 10.69it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.14s/it]
+Processed prompts: 100%|██████████| 1/1 [00:06<00:00,  6.14s/it]
+Wrote 141 frames -> <scratch>/runs/prfix-bf16-nocarry/rollout.mp4
+{
+  "variant": "prfix-bf16-nocarry:nocarry",
+  "argv": [
+    "bwm_world_model.py",
+    "--model",
+    "<scratch>/models/BWM",
+    "--episode-dir",
+    "<scratch>/episode141",
+    "--episode",
+    "0",
+    "--output",
+    "<scratch>/runs/prfix-bf16-nocarry/rollout.mp4",
+    "--num-inference-steps",
+    "50",
+    "--seed",
+    "42",
+    "--enforce-eager"
+  ],
+  "omni_kwargs": {
+    "model": "<scratch>/models/BWM",
+    "model_class_name": "BoundlessWorldModelPipeline",
+    "enforce_eager": "True"
+  },
+  "vllm_omni_package": "<scratch>/vllm-omni-histnoise/vllm_omni",
+  "windows": [
+    {
+      "window": 0,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 42,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.685
+    },
+    {
+      "window": 1,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 43,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.681
+    },
+    {
+      "window": 2,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        53,
+        14
+      ],
+      "num_frames": 53,
+      "seed": 44,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.14
+    }
+  ],
+  "rollout_seconds": 20.64
+}
+INFO 10-16 12:39:31 [async_omni_engine.py:1502] [AsyncOmniEngine] Shutting down Orchestrator
+INFO 10-16 12:39:31 [orchestrator.py:420] [Orchestrator] Received shutdown signal
+INFO 10-16 12:39:31 [orchestrator.py:1638] [Orchestrator] Shutting down all 1 client(s)
+INFO 10-16 12:39:31 [diffusion_worker.py:944] Worker 0: Received shutdown message
+INFO 10-16 12:39:31 [diffusion_worker.py:965] event loop terminated.
+INFO 10-16 12:39:31 [diffusion_worker.py:1035] Worker 0: Shutdown complete.
+INFO 10-16 12:39:32 [stage_pool.py:1204] [StagePool] Stage 0 replica 0 shut down
+INFO 10-16 12:39:32 [cumem.py:206] CuMemAllocator: sleep freed 0.00 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 0.00 GiB is discarded directly.

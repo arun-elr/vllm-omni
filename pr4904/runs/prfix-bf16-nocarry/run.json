@@ -1,0 +1,85 @@
+{
+  "variant": "prfix-bf16-nocarry:nocarry",
+  "argv": [
+    "bwm_world_model.py",
+    "--model",
+    "<scratch>/models/BWM",
+    "--episode-dir",
+    "<scratch>/episode141",
+    "--episode",
+    "0",
+    "--output",
+    "<scratch>/runs/prfix-bf16-nocarry/rollout.mp4",
+    "--num-inference-steps",
+    "50",
+    "--seed",
+    "42",
+    "--enforce-eager"
+  ],
+  "omni_kwargs": {
+    "model": "<scratch>/models/BWM",
+    "model_class_name": "BoundlessWorldModelPipeline",
+    "enforce_eager": "True"
+  },
+  "vllm_omni_package": "<scratch>/vllm-omni-histnoise/vllm_omni",
+  "windows": [
+    {
+      "window": 0,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 42,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.685
+    },
+    {
+      "window": 1,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        57,
+        14
+      ],
+      "num_frames": 57,
+      "seed": 43,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.681
+    },
+    {
+      "window": 2,
+      "history_shape": [
+        9,
+        480,
+        640,
+        3
+      ],
+      "action_shape": [
+        53,
+        14
+      ],
+      "num_frames": 53,
+      "seed": 44,
+      "height": 480,
+      "width": 640,
+      "steps": 50,
+      "seconds": 6.14
+    }
+  ],
+  "rollout_seconds": 20.64
+}

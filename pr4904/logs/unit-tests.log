@@ -1,0 +1,42 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- <scratch>/venv-omni/bin/python
+rootdir: <scratch>/vllm-omni-a548404
+configfile: pyproject.toml
+plugins: cov-7.1.0, anyio-4.15.1, asyncio-1.4.0, mock-3.16.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 12 items
+
+tests/diffusion/models/bwm/test_bwm_components.py::TestActionEncoder::test_output_shapes PASSED [  8%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestActionEncoder::test_leading_group_replicates_first_frame PASSED [ 16%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestWeightConversion::test_all_bwm_checkpoint_key_families_map PASSED [ 25%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestResolveNumFrames::test_derives_from_action_length_when_unset PASSED [ 33%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestResolveNumFrames::test_honors_explicit_request PASSED [ 41%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestResolveNumFrames::test_rejects_empty_action PASSED [ 50%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestHistoryFrames::test_uint8_scaled_to_minus_one_one PASSED [ 58%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestHistoryFrames::test_unit_float_rescaled PASSED [ 66%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestHistoryFrames::test_signed_float_passthrough PASSED [ 75%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestHistoryFrames::test_resize_to_requested_resolution PASSED [ 83%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestConditionEmbedder::test_text_projection_bypassed PASSED [ 91%]
+tests/diffusion/models/bwm/test_bwm_components.py::TestConditionEmbedder::test_action_modulation_changes_temb_per_latent_frame PASSED [100%]
+
+=============================== warnings summary ===============================
+../venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  <scratch>/venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2383
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2383: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    a_major_mode: tcgen05.OperandMajorMode,
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2385
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2385: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    b_major_mode: tcgen05.OperandMajorMode,
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99
+../venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    from cutlass.cute.nvgpu.tcgen05 import OperandMajorMode
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--- Running Summary
+======================= 12 passed, 18 warnings in 1.38s ========================

@@ -1,0 +1,62 @@
+[resolved_models] model_configs: [['<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00001-of-00003.safetensors', '<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00002-of-00003.safetensors', '<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00003-of-00003.safetensors'], '<scratch>/weights/Wan2.2-TI2V-5B/Wan2.2_VAE.pth']
+Loading models from: [
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00001-of-00003.safetensors",
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00002-of-00003.safetensors",
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00003-of-00003.safetensors"
+]
+Loaded model: {
+    "model_name": "wan_video_dit",
+    "model_class": "diffsynth.models.wan_video_dit.WanModel",
+    "extra_kwargs": {
+        "has_image_input": false,
+        "patch_size": [
+            1,
+            2,
+            2
+        ],
+        "in_dim": 48,
+        "dim": 3072,
+        "ffn_dim": 14336,
+        "freq_dim": 256,
+        "text_dim": 4096,
+        "out_dim": 48,
+        "num_heads": 24,
+        "num_layers": 30,
+        "eps": 1e-06,
+        "seperated_timestep": true,
+        "require_clip_embedding": false,
+        "require_vae_embedding": false,
+        "fuse_vae_embedding_in_latents": true
+    }
+}
+Loading models from: "<scratch>/weights/Wan2.2-TI2V-5B/Wan2.2_VAE.pth"
+Detected non-safetensors files, which may cause slower loading. It's recommended to convert it to a safetensors file.
+Loaded model: {
+    "model_name": "wan_video_vae",
+    "model_class": "diffsynth.models.wan_video_vae.WanVideoVAE38",
+    "extra_kwargs": null
+}
+No wan_video_text_encoder models available. This is not an error.
+Using wan_video_dit from [
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00001-of-00003.safetensors",
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00002-of-00003.safetensors",
+    "<scratch>/weights/Wan2.2-TI2V-5B/diffusion_pytorch_model-00003-of-00003.safetensors"
+].
+Using wan_video_vae from "<scratch>/weights/Wan2.2-TI2V-5B/Wan2.2_VAE.pth".
+No wan_video_image_encoder models available. This is not an error.
+No wan_video_motion_controller models available. This is not an error.
+No wan_video_vace models available. This is not an error.
+No wan_video_vap models available. This is not an error.
+No wans2v_audio_encoder models available. This is not an error.
+No wan_video_animate_adapter models available. This is not an error.
+Loading training weights from checkpoint: <scratch>/weights/BLM/step-12000.safetensors
+  - Loaded dit keys: 821 (missing=4, unexpected=0)
+  - Loaded action_encoder keys: 8 (missing=4, unexpected=0)
+Dataset size: 3, repeat: 1, total: 3
+[window] sample_index=0 episode_index=0 window=0 future_start=1 future_count=48 infer_frames=57
+flag True mode adaln
+first_frame_latents (1, 48, 3, 30, 40) latents (1, 48, 15, 30, 40)
+scheduler timesteps 50 [1000.0, 995.9349365234375, 991.7354736328125]
+latents shares storage with noise: True | noise[:, :, :3] equals history latents: True
+history_t 3 latents changed per frame: [False, False, False, False]
+cond frames 1.. equal noise: [True, True]

@@ -1,0 +1,30 @@
+[primary] PR vs reference (as released: history re-noising on) (pr-bf16 vs ref-bf16)
+    w0: lat mean 0.01183 max 1.09 | PSNR 42.10 SSIM 0.9963  w1: lat mean 0.03015 max 1.62 | PSNR 35.65 SSIM 0.9913  w2: lat mean 0.02346 max 1.28 | PSNR 41.09 SSIM 0.9953
+[diagnostic] PR vs reference with history re-noising off (pr-bf16 vs ref-bf16-nohistnoise)
+    w0: lat mean 0.01183 max 1.09 | PSNR 42.10 SSIM 0.9963  w1: lat mean 0.03015 max 1.62 | PSNR 35.65 SSIM 0.9913  w2: lat mean 0.02346 max 1.28 | PSNR 41.09 SSIM 0.9953
+[fix] PR + history re-noising vs reference (as released) (prfix-bf16 vs ref-bf16)
+    w0: lat mean 0.3322 max 5.33 | PSNR 15.93 SSIM 0.8740  w1: lat mean 0.388 max 7.27 | PSNR 13.76 SSIM 0.8054  w2: lat mean 0.4947 max 7.27 | PSNR 12.23 SSIM 0.8628
+[fp32] PR vs reference, history re-noising off, fp32 (pr-fp32 vs ref-fp32-nohistnoise)
+    w0: lat mean 0.0003516 max 0.0628 | PSNR 67.47 SSIM 0.9999  w1: lat mean 0.01187 max 0.781 | PSNR 51.18 SSIM 0.9985  w2: lat mean 0.01671 max 1.01 | PSNR 44.89 SSIM 0.9979
+[fp32] PR + history re-noising vs reference, fp32 (prfix-fp32 vs ref-fp32)
+    w0: lat mean 0.3258 max 5.32 | PSNR 16.05 SSIM 0.8787  w1: lat mean 0.388 max 7.07 | PSNR 13.81 SSIM 0.8061  w2: lat mean 0.417 max 7.49 | PSNR 13.33 SSIM 0.8612
+[carry] PR vs reference with PR-style uint8 history carry-over, bf16 (pr-bf16 vs ref-bf16-quantcarry)
+    w0: lat mean 0.01183 max 1.09 | PSNR 42.10 SSIM 0.9963  w1: lat mean 0.02811 max 1.58 | PSNR 36.05 SSIM 0.9919  w2: lat mean 0.0213 max 1.23 | PSNR 42.30 SSIM 0.9959
+[carry] PR vs reference with PR-style uint8 history carry-over, fp32 (pr-fp32 vs ref-fp32-quantcarry)
+    w0: lat mean 0.0003516 max 0.0628 | PSNR 67.47 SSIM 0.9999  w1: lat mean 0.001155 max 0.0542 | PSNR 64.18 SSIM 0.9998  w2: lat mean 0.001836 max 0.174 | PSNR 59.30 SSIM 0.9998
+[yardstick] reference bf16 vs reference fp32 (dtype change only) (ref-bf16 vs ref-fp32)
+    w0: lat mean 0.01701 max 2.02 | PSNR 38.50 SSIM 0.9949  w1: lat mean 0.03701 max 2.18 | PSNR 32.23 SSIM 0.9854  w2: lat mean 0.02014 max 1.22 | PSNR 39.28 SSIM 0.9947
+[yardstick] PR bf16 vs PR fp32 (dtype change only) (pr-bf16 vs pr-fp32)
+    w0: lat mean 0.01311 max 0.967 | PSNR 44.77 SSIM 0.9967  w1: lat mean 0.02741 max 1.74 | PSNR 37.95 SSIM 0.9934  w2: lat mean 0.0252 max 1.09 | PSNR 39.91 SSIM 0.9948
+[determinism] PR bf16, rerun (pr-bf16 vs pr-bf16-repeat)
+    w0: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w1: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w2: lat mean 0 max 0 | PSNR identical SSIM 1.0000
+[determinism] reference bf16, rerun (ref-bf16 vs ref-bf16-repeat)
+    w0: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w1: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w2: lat mean 0 max 0 | PSNR identical SSIM 1.0000
+[negative] reference, different initial noise (ref-bf16 vs ref-bf16-noise1042)
+    w0: lat mean 0.2826 max 6.16 | PSNR 18.42 SSIM 0.9123  w1: lat mean 0.3149 max 6.23 | PSNR 17.07 SSIM 0.8660  w2: lat mean 0.3238 max 10.1 | PSNR 17.32 SSIM 0.9050
+[negative] PR, history carry-over broken (pr-bf16 vs pr-bf16-nocarry)
+    w0: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w1: lat mean 0.5185 max 6.44 | PSNR 11.56 SSIM 0.8338  w2: lat mean 0.5554 max 6.32 | PSNR 11.53 SSIM 0.8419
+[negative] reference (as released), history carry-over broken (ref-bf16 vs ref-bf16-nocarry)
+    w0: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w1: lat mean 0.5164 max 6.52 | PSNR 11.59 SSIM 0.8350  w2: lat mean 0.5537 max 6.26 | PSNR 11.55 SSIM 0.8431
+[negative] PR + history re-noising, history carry-over broken (prfix-bf16 vs prfix-bf16-nocarry)
+    w0: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w1: lat mean 0 max 0 | PSNR identical SSIM 1.0000  w2: lat mean 0 max 0 | PSNR identical SSIM 1.0000

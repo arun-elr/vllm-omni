@@ -1,0 +1,5 @@
+venv-omni/bin/python python 3.12.15 torch 2.11.0+cu130 cuda 13.0 cudnn 91900 gpu NVIDIA H200
+venv-ref/bin/python python 3.12.15 torch 2.8.0+cu128 cuda 12.8 cudnn 91002 gpu NVIDIA H200
+INFO 10-16 12:44:10 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+vllm 0.24.0 vllm_omni 0.24.0rc2.dev47+ga54840407 diffusers 0.38.0
+diffsynth 2.0.11

@@ -1,0 +1,1446 @@
+{
+  "noise_checks_pr_side": {
+    "pr-bf16": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "pr-bf16-nocarry": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "pr-bf16-repeat": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "pr-fp32": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "prfix-bf16": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "prfix-bf16-nocarry": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ],
+    "prfix-fp32": [
+      {
+        "window": 0,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 1,
+        "shape": [
+          1,
+          48,
+          15,
+          30,
+          40
+        ],
+        "bit_identical": true
+      },
+      {
+        "window": 2,
+        "shape": [
+          1,
+          48,
+          14,
+          30,
+          40
+        ],
+        "bit_identical": true
+      }
+    ]
+  },
+  "input_checks": {
+    "first_frame_max_abs_diff": 1.1920928955078125e-07,
+    "first_frame_bf16_identical": false,
+    "action_frames_pr_ref": [
+      141,
+      141
+    ],
+    "action_bf16_identical": true,
+    "action_max_abs_diff": 0.0019516944885253906
+  },
+  "pairs": [
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 1.0859375,
+            "mean_abs": 0.01182732917368412,
+            "rel_mean_abs": 0.009642536751925945,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.2353515625,
+            "mean_abs": 0.010443261824548244,
+            "rel_mean_abs": 0.0073959240689873695,
+            "bit_exact": false
+          },
+          "psnr_db": 42.097788633362256,
+          "psnr_first_frame_db": 54.93989218753584,
+          "ssim": 0.9963405324629422,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 1.62109375,
+            "mean_abs": 0.030151240527629852,
+            "rel_mean_abs": 0.025819681584835052,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.52734375,
+            "mean_abs": 0.022026650607585907,
+            "rel_mean_abs": 0.016045255586504936,
+            "bit_exact": false
+          },
+          "psnr_db": 35.651200970552615,
+          "psnr_first_frame_db": 36.95786079396734,
+          "ssim": 0.9913282399456248,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.283203125,
+            "mean_abs": 0.023462919518351555,
+            "rel_mean_abs": 0.018643178045749664,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.458984375,
+            "mean_abs": 0.01809915527701378,
+            "rel_mean_abs": 0.012560433708131313,
+            "bit_exact": false
+          },
+          "psnr_db": 41.08649296875068,
+          "psnr_first_frame_db": 40.05437518911809,
+          "ssim": 0.9953287434902179,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "primary",
+      "label": "PR vs reference (as released: history re-noising on)",
+      "a": "pr-bf16",
+      "b": "ref-bf16"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 1.0859375,
+            "mean_abs": 0.01182732917368412,
+            "rel_mean_abs": 0.009642536751925945,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.2353515625,
+            "mean_abs": 0.010443261824548244,
+            "rel_mean_abs": 0.0073959240689873695,
+            "bit_exact": false
+          },
+          "psnr_db": 42.097788633362256,
+          "psnr_first_frame_db": 54.93989218753584,
+          "ssim": 0.9963405324629422,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 1.62109375,
+            "mean_abs": 0.030151240527629852,
+            "rel_mean_abs": 0.025819681584835052,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.52734375,
+            "mean_abs": 0.022026650607585907,
+            "rel_mean_abs": 0.016045255586504936,
+            "bit_exact": false
+          },
+          "psnr_db": 35.651200970552615,
+          "psnr_first_frame_db": 36.95786079396734,
+          "ssim": 0.9913282399456248,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.283203125,
+            "mean_abs": 0.023462919518351555,
+            "rel_mean_abs": 0.018643178045749664,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.458984375,
+            "mean_abs": 0.01809915527701378,
+            "rel_mean_abs": 0.012560433708131313,
+            "bit_exact": false
+          },
+          "psnr_db": 41.08649296875068,
+          "psnr_first_frame_db": 40.05437518911809,
+          "ssim": 0.9953287434902179,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "diagnostic",
+      "label": "PR vs reference with history re-noising off",
+      "a": "pr-bf16",
+      "b": "ref-bf16-nohistnoise"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 5.328125,
+            "mean_abs": 0.33216628432273865,
+            "rel_mean_abs": 0.2708071768283844,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 4.9599609375,
+            "mean_abs": 0.2217959314584732,
+            "rel_mean_abs": 0.15707600116729736,
+            "bit_exact": false
+          },
+          "psnr_db": 15.927972591296784,
+          "psnr_first_frame_db": 11.090808468065061,
+          "ssim": 0.8739762212156496,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 7.265625,
+            "mean_abs": 0.3880373239517212,
+            "rel_mean_abs": 0.33229145407676697,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.484375,
+            "mean_abs": 0.31327229738235474,
+            "rel_mean_abs": 0.22820238769054413,
+            "bit_exact": false
+          },
+          "psnr_db": 13.760933123460457,
+          "psnr_first_frame_db": 9.663756827195241,
+          "ssim": 0.8054345775142094,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 7.265625,
+            "mean_abs": 0.4946579039096832,
+            "rel_mean_abs": 0.3930455148220062,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.09375,
+            "mean_abs": 0.30533310770988464,
+            "rel_mean_abs": 0.21189476549625397,
+            "bit_exact": false
+          },
+          "psnr_db": 12.233913396559497,
+          "psnr_first_frame_db": 6.481583029024634,
+          "ssim": 0.8628270046656386,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "fix",
+      "label": "PR + history re-noising vs reference (as released)",
+      "a": "prfix-bf16",
+      "b": "ref-bf16"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.06278586387634277,
+            "mean_abs": 0.0003516249416861683,
+            "rel_mean_abs": 0.0002861607354134321,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.005432605743408203,
+            "mean_abs": 0.00022594502661377192,
+            "rel_mean_abs": 0.00015990177053026855,
+            "bit_exact": false
+          },
+          "psnr_db": 67.46838478007821,
+          "psnr_first_frame_db": 68.9869909297948,
+          "ssim": 0.9998876839370534,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 0.7810345888137817,
+            "mean_abs": 0.01187006663531065,
+            "rel_mean_abs": 0.010164523497223854,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.33183518052101135,
+            "mean_abs": 0.00985055323690176,
+            "rel_mean_abs": 0.007181572262197733,
+            "bit_exact": false
+          },
+          "psnr_db": 51.17851613885925,
+          "psnr_first_frame_db": 51.8527061004281,
+          "ssim": 0.9984962406252206,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.0128182172775269,
+            "mean_abs": 0.016714848577976227,
+            "rel_mean_abs": 0.013266992755234241,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.5012102127075195,
+            "mean_abs": 0.014307613484561443,
+            "rel_mean_abs": 0.00992891937494278,
+            "bit_exact": false
+          },
+          "psnr_db": 44.89143955857877,
+          "psnr_first_frame_db": 48.228170651892654,
+          "ssim": 0.997941733751071,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "fp32",
+      "label": "PR vs reference, history re-noising off, fp32",
+      "a": "pr-fp32",
+      "b": "ref-fp32-nohistnoise"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 5.324953079223633,
+            "mean_abs": 0.3258499205112457,
+            "rel_mean_abs": 0.2651844024658203,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 4.959259033203125,
+            "mean_abs": 0.21963803470134735,
+            "rel_mean_abs": 0.15543828904628754,
+            "bit_exact": false
+          },
+          "psnr_db": 16.050372672071866,
+          "psnr_first_frame_db": 11.175722153859233,
+          "ssim": 0.8786920155524734,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 7.0697784423828125,
+            "mean_abs": 0.38798990845680237,
+            "rel_mean_abs": 0.33224180340766907,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.433893203735352,
+            "mean_abs": 0.3097907304763794,
+            "rel_mean_abs": 0.22585377097129822,
+            "bit_exact": false
+          },
+          "psnr_db": 13.807349340364523,
+          "psnr_first_frame_db": 9.647797329418147,
+          "ssim": 0.8060518283001773,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 7.488008975982666,
+            "mean_abs": 0.41696351766586304,
+            "rel_mean_abs": 0.330954372882843,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.0507307052612305,
+            "mean_abs": 0.3053530752658844,
+            "rel_mean_abs": 0.21190299093723297,
+            "bit_exact": false
+          },
+          "psnr_db": 13.32658704589327,
+          "psnr_first_frame_db": 6.46639652934342,
+          "ssim": 0.8612293180456168,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "fp32",
+      "label": "PR + history re-noising vs reference, fp32",
+      "a": "prfix-fp32",
+      "b": "ref-fp32"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 1.0859375,
+            "mean_abs": 0.01182732917368412,
+            "rel_mean_abs": 0.009642536751925945,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.2353515625,
+            "mean_abs": 0.010443261824548244,
+            "rel_mean_abs": 0.0073959240689873695,
+            "bit_exact": false
+          },
+          "psnr_db": 42.097788633362256,
+          "psnr_first_frame_db": 54.93989218753584,
+          "ssim": 0.9963405324629422,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 1.576171875,
+            "mean_abs": 0.02810630202293396,
+            "rel_mean_abs": 0.024089625105261803,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.51953125,
+            "mean_abs": 0.021048931404948235,
+            "rel_mean_abs": 0.015341425314545631,
+            "bit_exact": false
+          },
+          "psnr_db": 36.05160249332232,
+          "psnr_first_frame_db": 36.96379171604004,
+          "ssim": 0.991887863458123,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.23046875,
+            "mean_abs": 0.021303975954651833,
+            "rel_mean_abs": 0.01694492995738983,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.421875,
+            "mean_abs": 0.017061365768313408,
+            "rel_mean_abs": 0.011845232918858528,
+            "bit_exact": false
+          },
+          "psnr_db": 42.304955746515546,
+          "psnr_first_frame_db": 40.156352583585395,
+          "ssim": 0.9958925843129101,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "carry",
+      "label": "PR vs reference with PR-style uint8 history carry-over, bf16",
+      "a": "pr-bf16",
+      "b": "ref-bf16-quantcarry"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": false,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.06278586387634277,
+            "mean_abs": 0.0003516249416861683,
+            "rel_mean_abs": 0.0002861607354134321,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.005432605743408203,
+            "mean_abs": 0.00022594502661377192,
+            "rel_mean_abs": 0.00015990177053026855,
+            "bit_exact": false
+          },
+          "psnr_db": 67.46838478007821,
+          "psnr_first_frame_db": 68.9869909297948,
+          "ssim": 0.9998876839370534,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 0.05424565076828003,
+            "mean_abs": 0.0011548149632290006,
+            "rel_mean_abs": 0.0009903722675517201,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.031677067279815674,
+            "mean_abs": 0.0009475582628510892,
+            "rel_mean_abs": 0.0006914748228155077,
+            "bit_exact": false
+          },
+          "psnr_db": 64.18179461278542,
+          "psnr_first_frame_db": 63.297983549650894,
+          "ssim": 0.9998253668796506,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 0.17352735996246338,
+            "mean_abs": 0.0018359433161094785,
+            "rel_mean_abs": 0.001459895633161068,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.053417205810546875,
+            "mean_abs": 0.00137564935721457,
+            "rel_mean_abs": 0.0009562339982949197,
+            "bit_exact": false
+          },
+          "psnr_db": 59.304371617399134,
+          "psnr_first_frame_db": 61.52876768774283,
+          "ssim": 0.9997761378734886,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "carry",
+      "label": "PR vs reference with PR-style uint8 history carry-over, fp32",
+      "a": "pr-fp32",
+      "b": "ref-fp32-quantcarry"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 2.023303508758545,
+            "mean_abs": 0.017006581649184227,
+            "rel_mean_abs": 0.013840360566973686,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.2514849901199341,
+            "mean_abs": 0.014727398753166199,
+            "rel_mean_abs": 0.01042261067777872,
+            "bit_exact": false
+          },
+          "psnr_db": 38.50334110346199,
+          "psnr_first_frame_db": 53.40783017813809,
+          "ssim": 0.9948918733387093,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 2.1802163124084473,
+            "mean_abs": 0.03701065480709076,
+            "rel_mean_abs": 0.03169279918074608,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.8542558550834656,
+            "mean_abs": 0.02710862085223198,
+            "rel_mean_abs": 0.019763613119721413,
+            "bit_exact": false
+          },
+          "psnr_db": 32.23221479625201,
+          "psnr_first_frame_db": 33.211430569655164,
+          "ssim": 0.9854172113763554,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.2175366878509521,
+            "mean_abs": 0.020140063017606735,
+            "rel_mean_abs": 0.015985671430826187,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.6208231449127197,
+            "mean_abs": 0.01855016127228737,
+            "rel_mean_abs": 0.012873080559074879,
+            "bit_exact": false
+          },
+          "psnr_db": 39.276512896880774,
+          "psnr_first_frame_db": 34.64311859592655,
+          "ssim": 0.9947374846551871,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "yardstick",
+      "label": "reference bf16 vs reference fp32 (dtype change only)",
+      "a": "ref-bf16",
+      "b": "ref-fp32"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.9673682451248169,
+            "mean_abs": 0.013105361722409725,
+            "rel_mean_abs": 0.010665440000593662,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.3157793879508972,
+            "mean_abs": 0.014451967552304268,
+            "rel_mean_abs": 0.010227673687040806,
+            "bit_exact": false
+          },
+          "psnr_db": 44.771096233540995,
+          "psnr_first_frame_db": 51.37344174324271,
+          "ssim": 0.9966559554767395,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 1.7350244522094727,
+            "mean_abs": 0.02741057425737381,
+            "rel_mean_abs": 0.02350737154483795,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.41107988357543945,
+            "mean_abs": 0.02223300002515316,
+            "rel_mean_abs": 0.016224602237343788,
+            "bit_exact": false
+          },
+          "psnr_db": 37.94839283566279,
+          "psnr_first_frame_db": 39.909453547000375,
+          "ssim": 0.9934198840425195,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 1.0936334133148193,
+            "mean_abs": 0.0251958966255188,
+            "rel_mean_abs": 0.02003508061170578,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 0.49703648686408997,
+            "mean_abs": 0.0207428727298975,
+            "rel_mean_abs": 0.014419149607419968,
+            "bit_exact": false
+          },
+          "psnr_db": 39.90638716078155,
+          "psnr_first_frame_db": 37.5722089325471,
+          "ssim": 0.9948494331494888,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "yardstick",
+      "label": "PR bf16 vs PR fp32 (dtype change only)",
+      "a": "pr-bf16",
+      "b": "pr-fp32"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        }
+      ],
+      "kind": "determinism",
+      "label": "PR bf16, rerun",
+      "a": "pr-bf16",
+      "b": "pr-bf16-repeat"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        }
+      ],
+      "kind": "determinism",
+      "label": "reference bf16, rerun",
+      "a": "ref-bf16",
+      "b": "ref-bf16-repeat"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 6.16015625,
+            "mean_abs": 0.28261202573776245,
+            "rel_mean_abs": 0.23081928491592407,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 6.78125,
+            "mean_abs": 1.1281335353851318,
+            "rel_mean_abs": 0.801081120967865,
+            "bit_exact": false
+          },
+          "psnr_db": 18.41711420858461,
+          "psnr_first_frame_db": 51.64135136400653,
+          "ssim": 0.9123427424735381,
+          "pixels_identical": false
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 6.234375,
+            "mean_abs": 0.3149140179157257,
+            "rel_mean_abs": 0.26774463057518005,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 7.78125,
+            "mean_abs": 1.1603422164916992,
+            "rel_mean_abs": 0.8437867164611816,
+            "bit_exact": false
+          },
+          "psnr_db": 17.0693910260268,
+          "psnr_first_frame_db": 16.454850487518627,
+          "ssim": 0.8660497932599472,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 10.140625,
+            "mean_abs": 0.32384854555130005,
+            "rel_mean_abs": 0.2545911967754364,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 6.984375,
+            "mean_abs": 1.1472785472869873,
+            "rel_mean_abs": 0.7959797382354736,
+            "bit_exact": false
+          },
+          "psnr_db": 17.31943064960582,
+          "psnr_first_frame_db": 15.257044893255255,
+          "ssim": 0.9050282217836094,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "negative",
+      "label": "reference, different initial noise",
+      "a": "ref-bf16",
+      "b": "ref-bf16-noise1042"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 6.4375,
+            "mean_abs": 0.5185296535491943,
+            "rel_mean_abs": 0.38762161135673523,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.890625,
+            "mean_abs": 0.4016560912132263,
+            "rel_mean_abs": 0.27577483654022217,
+            "bit_exact": false
+          },
+          "psnr_db": 11.559235600024675,
+          "psnr_first_frame_db": 11.136478255823189,
+          "ssim": 0.8337944908546958,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 6.31640625,
+            "mean_abs": 0.5553631782531738,
+            "rel_mean_abs": 0.40780889987945557,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.5703125,
+            "mean_abs": 0.48925790190696716,
+            "rel_mean_abs": 0.3151361346244812,
+            "bit_exact": false
+          },
+          "psnr_db": 11.531884254772574,
+          "psnr_first_frame_db": 9.241957151566236,
+          "ssim": 0.8418505948258729,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "negative",
+      "label": "PR, history carry-over broken",
+      "a": "pr-bf16",
+      "b": "pr-bf16-nocarry"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 6.515625,
+            "mean_abs": 0.5163692831993103,
+            "rel_mean_abs": 0.3859880268573761,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.90625,
+            "mean_abs": 0.3994764983654022,
+            "rel_mean_abs": 0.274354487657547,
+            "bit_exact": false
+          },
+          "psnr_db": 11.591274299807369,
+          "psnr_first_frame_db": 11.169947121119145,
+          "ssim": 0.8350173364003949,
+          "pixels_identical": false
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 6.255859375,
+            "mean_abs": 0.5536733269691467,
+            "rel_mean_abs": 0.40660759806632996,
+            "bit_exact": false
+          },
+          "first_dit_output": {
+            "max_abs": 5.5703125,
+            "mean_abs": 0.4870234429836273,
+            "rel_mean_abs": 0.31366658210754395,
+            "bit_exact": false
+          },
+          "psnr_db": 11.55371699439177,
+          "psnr_first_frame_db": 9.289066149670123,
+          "ssim": 0.8430812270011651,
+          "pixels_identical": false
+        }
+      ],
+      "kind": "negative",
+      "label": "reference (as released), history carry-over broken",
+      "a": "ref-bf16",
+      "b": "ref-bf16-nocarry"
+    },
+    {
+      "frames": 141,
+      "frame0_identical": true,
+      "windows": [
+        {
+          "window": 0,
+          "frames": [
+            1,
+            49
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 1,
+          "frames": [
+            49,
+            97
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        },
+        {
+          "window": 2,
+          "frames": [
+            97,
+            141
+          ],
+          "latent": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "first_dit_output": {
+            "max_abs": 0.0,
+            "mean_abs": 0.0,
+            "rel_mean_abs": 0.0,
+            "bit_exact": true
+          },
+          "psnr_db": null,
+          "psnr_first_frame_db": null,
+          "ssim": 1.0,
+          "pixels_identical": true
+        }
+      ],
+      "kind": "negative",
+      "label": "PR + history re-noising, history carry-over broken",
+      "a": "prfix-bf16",
+      "b": "prfix-bf16-nocarry"
+    }
+  ]
+}

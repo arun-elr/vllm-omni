@@ -1,0 +1,6 @@
+flag True mode adaln
+first_frame_latents (1, 48, 3, 30, 40) latents (1, 48, 15, 30, 40)
+scheduler timesteps 50 [1000.0, 995.9349365234375, 991.7354736328125]
+latents shares storage with noise: True | noise[:, :, :3] equals history latents: True
+history_t 3 latents changed per frame: [False, False, False, False]
+cond frames 1.. equal noise: [True, True]

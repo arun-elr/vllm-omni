@@ -1,0 +1,6 @@
+[1/4] Copying VAE from <hf-cache>/hub/models--Wan-AI--Wan2.2-TI2V-5B-Diffusers/snapshots/b8fff7315c768468a5333511427288870b2e9635
+[2/4] Downloading BWM checkpoint BLM-Lab/Boundless-World-Model/step-12000.safetensors
+[3/4] Converting DiT weights to diffusers naming
+  transformer: 821 fine-tuned keys over 825 base keys; action encoder: 8 keys
+[4/4] Writing model_index.json
+Done -> <scratch>/models/BWM

@@ -1,0 +1,21 @@
+diff --git a/vllm_omni/diffusion/models/bwm/pipeline_bwm.py b/vllm_omni/diffusion/models/bwm/pipeline_bwm.py
+index 95190ffa9..907454f5e 100644
+--- a/vllm_omni/diffusion/models/bwm/pipeline_bwm.py
++++ b/vllm_omni/diffusion/models/bwm/pipeline_bwm.py
+@@ -374,6 +374,16 @@ class BoundlessWorldModelPipeline(
+             generator=generator,
+         )
+ 
++        # The reference rollout (scripts/infer.py) runs with
++        # use_history_condition_noise_in_inference=True: history latent frames
++        # 1.. are replaced by add_noise(history, noise, timesteps[max(0, N - 50)])
++        # and held there for the whole denoise. At N <= 50 that is timesteps[0]
++        # (sigma 1.0), so only the first history latent frame stays clean.
++        history_t = int((mask[0, 0, :, 0, 0] == 0).sum())
++        if history_t > 1:
++            sigma = self.scheduler.sigmas[max(0, len(timesteps) - 50)].to(condition.device, condition.dtype)
++            condition[:, :, 1:history_t] = (1 - sigma) * condition[:, :, 1:history_t] + sigma * latents[:, :, 1:history_t]
++
+         self.transformer.condition_embedder.action_mod_emb = action_mod_emb
+         try:
+             with self.progress_bar(total=len(timesteps)) as pbar:

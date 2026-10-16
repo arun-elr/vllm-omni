@@ -1,0 +1,6 @@
+vllm-omni PR head: a54840407e0c07deef2bd22f4df11763bcb83ffd (vllm-project/vllm-omni#4904, arun-elr:model/boundless-world-model)
+vllm-omni PR head + history re-noising (diagnostic, not pushed): a54840407 + harness/prfix_histnoise.patch
+reference: boundless-large-model/boundless-world-model cc0bc74ec24867975f1dd26939f3864343368367 (code identical to 44acfd1b, the July 2 head; later commits are README/figures only)
+checkpoint: BLM-Lab/Boundless-World-Model@738a8d3c008e637b8b1b18d5e98a82f6de9c04aa step-12000.safetensors
+reference base weights: Wan-AI/Wan2.2-TI2V-5B@921dbaf3f1674a56f47e83fb80a34bac8a8f203e (DiT shards, Wan2.2_VAE.pth)
+PR base weights: Wan-AI/Wan2.2-TI2V-5B-Diffusers@b8fff7315c768468a5333511427288870b2e9635 (transformer, vae)
