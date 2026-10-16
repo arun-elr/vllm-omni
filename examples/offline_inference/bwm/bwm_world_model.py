@@ -102,6 +102,70 @@ def extract_video(outputs) -> np.ndarray:
     raise ValueError(f"Could not find video frames in output (type {type(out)})")
 
 
+def rollout(
+    omni,
+    first_frame: np.ndarray,
+    action: np.ndarray,
+    *,
+    prompt: str = "",
+    num_inference_steps: int = 50,
+    seed: int = 42,
+    max_windows: int = 0,
+) -> list[np.ndarray]:
+    """Autoregressive rollout; returns one frame per action (``len(action)``
+    frames, frame 0 being ``first_frame``) unless ``max_windows`` stops early."""
+    from vllm_omni.inputs.data import OmniDiffusionSamplingParams
+
+    total_frames = action.shape[0]
+    height, width = first_frame.shape[:2]
+    generated: list[np.ndarray] = [first_frame]
+    future_per_window = NUM_FRAMES - NUM_HISTORY_FRAMES
+    window = 0
+    while len(generated) < total_frames:
+        if max_windows and window >= max_windows:
+            break
+        hist_idx = history_indices(len(generated), NUM_HISTORY_FRAMES)
+        future_start = len(generated)
+        future_count = min(future_per_window, total_frames - future_start)
+        # Window action condition: actions at the history frames + future
+        # actions, padded with the last action up to the chunk length.
+        cond = np.concatenate([action[hist_idx], action[future_start : future_start + future_count]], axis=0)
+        # Chunk length: history + future, rounded UP to the 4n+1 frame grid so
+        # tails of 1 to 3 frames still get a latent frame (padding trimmed below).
+        num_frames = 1 + ((cond.shape[0] - 1 + 3) // 4) * 4
+        if cond.shape[0] < num_frames:
+            cond = np.concatenate([cond, np.repeat(cond[-1:], num_frames - cond.shape[0], axis=0)], axis=0)
+
+        history_frames = np.stack([generated[i] for i in hist_idx], axis=0)
+        print(
+            f"[window {window}] history={hist_idx[0]}..{hist_idx[-1]} "
+            f"future=[{future_start}, {future_start + future_count}) chunk={num_frames}"
+        )
+
+        outputs = omni.generate(
+            {
+                "prompt": prompt,
+                "multi_modal_data": {"video": history_frames, "action": cond},
+            },
+            OmniDiffusionSamplingParams(
+                height=height,
+                width=width,
+                num_frames=num_frames,
+                num_inference_steps=num_inference_steps,
+                guidance_scale=1.0,
+                seed=seed + window,
+                output_type="np",
+            ),
+        )
+        video = extract_video(outputs)
+        frames = (np.asarray(video[0] if video.ndim == 5 else video) * 255).clip(0, 255).astype(np.uint8)
+        # Drop the history prefix; keep newly generated future frames.
+        new_frames = frames[NUM_HISTORY_FRAMES : NUM_HISTORY_FRAMES + future_count]
+        generated.extend(list(new_frames))
+        window += 1
+    return generated
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", required=True, help="Assembled BWM directory (see download_bwm.py)")
@@ -116,7 +180,6 @@ def main() -> None:
     args = parser.parse_args()
 
     from vllm_omni.entrypoints.omni import Omni
-    from vllm_omni.inputs.data import OmniDiffusionSamplingParams
 
     first_frame, action, meta = load_episode(args.episode_dir, args.episode)
     total_frames = action.shape[0]
@@ -129,53 +192,15 @@ def main() -> None:
         enforce_eager=args.enforce_eager,
     )
 
-    generated: list[np.ndarray] = [first_frame]
-    future_per_window = NUM_FRAMES - NUM_HISTORY_FRAMES
-    window = 0
-    while len(generated) < total_frames:
-        if args.max_windows and window >= args.max_windows:
-            break
-        hist_idx = history_indices(len(generated), NUM_HISTORY_FRAMES)
-        future_start = len(generated)
-        future_count = min(future_per_window, total_frames - future_start)
-        if future_count < 4:
-            break  # remainder too short for a latent frame
-        # Window action condition: actions at the history frames + future
-        # actions, padded with the last action up to the chunk length.
-        cond = np.concatenate([action[hist_idx], action[future_start : future_start + future_count]], axis=0)
-        # Chunk length: history + future, rounded UP to the 4n+1 frame grid
-        # (rounding down would produce zero new frames on short tail windows).
-        num_frames = 1 + ((cond.shape[0] - 1 + 3) // 4) * 4
-        if cond.shape[0] < num_frames:
-            cond = np.concatenate([cond, np.repeat(cond[-1:], num_frames - cond.shape[0], axis=0)], axis=0)
-
-        history_frames = np.stack([generated[i] for i in hist_idx], axis=0)
-        print(
-            f"[window {window}] history={hist_idx[0]}..{hist_idx[-1]} "
-            f"future=[{future_start}, {future_start + future_count}) chunk={num_frames}"
-        )
-
-        outputs = omni.generate(
-            {
-                "prompt": meta.get("prompt", ""),
-                "multi_modal_data": {"video": history_frames, "action": cond},
-            },
-            OmniDiffusionSamplingParams(
-                height=height,
-                width=width,
-                num_frames=num_frames,
-                num_inference_steps=args.num_inference_steps,
-                guidance_scale=1.0,
-                seed=args.seed + window,
-                output_type="np",
-            ),
-        )
-        video = extract_video(outputs)
-        frames = (np.asarray(video[0] if video.ndim == 5 else video) * 255).clip(0, 255).astype(np.uint8)
-        # Drop the history prefix; keep newly generated future frames.
-        new_frames = frames[NUM_HISTORY_FRAMES : NUM_HISTORY_FRAMES + future_count]
-        generated.extend(list(new_frames))
-        window += 1
+    generated = rollout(
+        omni,
+        first_frame,
+        action,
+        prompt=meta.get("prompt", ""),
+        num_inference_steps=args.num_inference_steps,
+        seed=args.seed,
+        max_windows=args.max_windows,
+    )
 
     writer = imageio.get_writer(args.output, fps=args.fps, quality=5)
     for frame in generated:
