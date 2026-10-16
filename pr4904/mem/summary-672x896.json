@@ -11,8 +11,18 @@
     896
   ],
   "dtype": "torch.bfloat16",
-  "torch_max_memory_allocated_gib": 22.155,
-  "torch_max_memory_reserved_gib": 26.072,
+  "torch_per_forward_peak_allocated_gib_max_over_windows": 22.157,
+  "torch_per_forward_peak_reserved_gib_max_over_windows": 26.072,
+  "torch_per_forward_peak_allocated_gib_per_window": [
+    22.157,
+    22.155,
+    22.155
+  ],
+  "torch_per_forward_peak_reserved_gib_per_window": [
+    26.072,
+    26.072,
+    26.072
+  ],
   "nvidia_smi_peak_used_gib": 26.75,
   "nvidia_smi_samples": 332
 }

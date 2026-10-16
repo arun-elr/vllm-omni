@@ -1,0 +1,10 @@
+{
+  "frames": 52,
+  "psnr_frames_0_48_vs_143run": 43.832095738764274,
+  "psnr_tail_49_51_vs_143run": [
+    33.88,
+    28.59,
+    24.2
+  ],
+  "psnr_frame48_to_49_within_52run": 17.68
+}

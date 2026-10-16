@@ -2,10 +2,10 @@
 
 Active only when BWM_MEM_LOG is set; put this directory on PYTHONPATH so the
 worker subprocess loads it. After each ``BoundlessWorldModelPipeline.forward``
-it appends one JSON line with the process-lifetime peaks of
-``torch.cuda.max_memory_allocated`` and ``torch.cuda.max_memory_reserved``
-(never reset, so the last line is the peak over model load and all windows)
-and the request's latent shape. Outputs are unchanged.
+it appends one JSON line with ``torch.cuda.max_memory_allocated`` and
+``torch.cuda.max_memory_reserved``. The diffusion runner resets peak stats
+before each forward, so each line is that forward's peak (model load
+excluded); summaries take the max over windows. Outputs are unchanged.
 """
 
 import importlib.abc

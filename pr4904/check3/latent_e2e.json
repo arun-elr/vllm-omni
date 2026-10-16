@@ -1,0 +1,30 @@
+{
+  "np_type": "ndarray",
+  "np_shape": [
+    1,
+    57,
+    480,
+    640,
+    3
+  ],
+  "latent_type": "Tensor",
+  "latent_shape": [
+    1,
+    48,
+    15,
+    30,
+    40
+  ],
+  "latent_dtype": "torch.float32",
+  "latent_finite": true,
+  "decoded_shape": [
+    1,
+    57,
+    480,
+    640,
+    3
+  ],
+  "decoded_vs_np_max_abs": 0.0390625,
+  "decoded_vs_np_mean_abs": 0.0009598886827006936,
+  "decoded_vs_np_psnr_db": 56.755122898953154
+}

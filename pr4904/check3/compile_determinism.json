@@ -1,0 +1,14 @@
+{
+  "compiled_old_vs_old_rerun": {
+    "psnr_db": 38.900451745708956,
+    "max_abs": 212
+  },
+  "compiled_old_vs_new": {
+    "psnr_db": 41.39636258640045,
+    "max_abs": 97
+  },
+  "compiled_old_rerun_vs_new": {
+    "psnr_db": 39.54096627185217,
+    "max_abs": 194
+  }
+}

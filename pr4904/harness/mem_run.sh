@@ -33,28 +33,7 @@ run() {
       --model $S/models/BWM --episode-dir $epdir --episode 0 --output $OUT/bwm_rollout_$tag.mp4 "$@") \
       > $OUT/log-$tag.log 2>&1
   kill $smi
-  $OMNI - $OUT $tag <<'EOF'
-import csv, json, sys, imageio.v2 as imageio
-out, tag = sys.argv[1], sys.argv[2]
-r = imageio.get_reader(f"{out}/bwm_rollout_{tag}.mp4")
-frames = [f for f in r]
-recs = [json.loads(l) for l in open(f"{out}/{tag}.jsonl")]
-smi = [int(row[1]) for row in csv.reader(open(f"{out}/smi-{tag}.csv")) if len(row) > 1 and row[1].strip().isdigit()]
-s = {
-    "case": tag,
-    "output_frames": len(frames),
-    "output_hw": list(frames[0].shape[:2]),
-    "windows": len(recs),
-    "request_hw": [recs[0]["height"], recs[0]["width"]],
-    "dtype": recs[0]["dtype"],
-    "torch_max_memory_allocated_gib": recs[-1]["max_memory_allocated_gib"],
-    "torch_max_memory_reserved_gib": recs[-1]["max_memory_reserved_gib"],
-    "nvidia_smi_peak_used_gib": round(max(smi) / 1024, 2),
-    "nvidia_smi_samples": len(smi),
-}
-json.dump(s, open(f"{out}/summary-{tag}.json", "w"), indent=2)
-print(json.dumps(s))
-EOF
+  $OMNI $S/harness/summarize_mem.py $OUT $tag
 }
 
 run 480x640 $S/bwm-ref/demo

@@ -1,0 +1,410 @@
+F..FFFFFFFFFFFFFFFFFFFF                                                  [100%]
+=================================== FAILURES ===================================
+_____________________ test_latent_passes_through_unchanged _____________________
+
+engine = <vllm_omni.diffusion.diffusion_engine.DiffusionEngine object at 0x7fde4b090aa0>
+
+    def test_latent_passes_through_unchanged(engine):
+        latents = torch.randn(1, 48, 2, HEIGHT // 16, WIDTH // 16)
+        expected = latents.clone()
+        out = _postprocess(engine, latents, "latent")
+>       assert isinstance(out, torch.Tensor)
+E       AssertionError: assert False
+E        +  where False = isinstance(array([[[[[0.4320301 , 0.25806987, 1.        , 0.4795225 , 1.        ,\n           0.33494383, 0.55394745, 0.4806459 , ...984, 0.70138663, 0.677552  , 0.7496131 , 0.44481936,\n           0.25342706, 0.        , 0.83925295]]]]], dtype=float32), <class 'torch.Tensor'>)
+E        +    where <class 'torch.Tensor'> = torch.Tensor
+
+tests/diffusion/models/bwm/test_bwm_output_type.py:66: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+INFO 10-16 19:32:52 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-16 19:32:52 [vllm.py:1006] Asynchronous scheduling is enabled.
+INFO 10-16 19:32:52 [kernel.py:276] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+--- Running test: test_latent_passes_through_unchanged
+------------------------------ Captured log setup ------------------------------
+INFO     vllm.config.scheduler:scheduler.py:252 Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO     vllm.config.vllm:vllm.py:1006 Asynchronous scheduling is enabled.
+INFO     vllm.config.kernel:kernel.py:276 Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+____________________________ test_pt_returns_tensor ____________________________
+
+engine = <vllm_omni.diffusion.diffusion_engine.DiffusionEngine object at 0x7fde4af78230>
+
+    def test_pt_returns_tensor(engine):
+        video = _decoded_video()
+        out = _postprocess(engine, video, "pt")
+>       assert isinstance(out, torch.Tensor)
+E       AssertionError: assert False
+E        +  where False = isinstance(array([[[[[8.64865184e-01, 1.51839972e-01, 6.02344871e-02],\n          [2.48578489e-01, 4.15432990e-01, 7.65904605e-01]...238e-01],\n          [1.28093839e-01, 1.47691011e-01, 3.51691008e-01]]]]],\n      shape=(1, 5, 32, 48, 3), dtype=float32), <class 'torch.Tensor'>)
+E        +    where <class 'torch.Tensor'> = torch.Tensor
+
+tests/diffusion/models/bwm/test_bwm_output_type.py:82: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_pt_returns_tensor
+___________________________ test_pil_returns_frames ____________________________
+
+engine = <vllm_omni.diffusion.diffusion_engine.DiffusionEngine object at 0x7fde4af79070>
+
+    def test_pil_returns_frames(engine):
+        out = _postprocess(engine, _decoded_video(), "pil")
+>       assert len(out) == NUM_FRAMES
+E       assert 1 == 5
+E        +  where 1 = len(array([[[[[6.59498274e-01, 6.31777525e-01, 2.90772915e-02],\n          [4.38060164e-01, 4.81236696e-01, 9.41093028e-01]...665e-01],\n          [8.22172940e-01, 8.71940553e-01, 7.77148068e-01]]]]],\n      shape=(1, 5, 32, 48, 3), dtype=float32))
+
+tests/diffusion/models/bwm/test_bwm_output_type.py:90: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_pil_returns_frames
+____________________ test_unsupported_type_rejected_by_hook ____________________
+
+engine = <vllm_omni.diffusion.diffusion_engine.DiffusionEngine object at 0x7fde4b091640>
+
+    def test_unsupported_type_rejected_by_hook(engine):
+>       with pytest.raises(ValueError, match="output_type"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/diffusion/models/bwm/test_bwm_output_type.py:96: Failed
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_unsupported_type_rejected_by_hook
+______________ test_unsupported_type_rejected_at_forward_ingress _______________
+
+    def test_unsupported_type_rejected_at_forward_ingress():
+        pipeline = object.__new__(BoundlessWorldModelPipeline)
+        req = SimpleNamespace(prompts=[{}], sampling_params=OmniDiffusionSamplingParams(output_type="mp4"))
+>       with pytest.raises(ValueError, match="output_type"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'output_type'
+E         Actual message: 'BWM requires history frames: `"multi_modal_data": {"video": <(T,H,W,C) array or list of PIL images>, ...}`'
+
+tests/diffusion/models/bwm/test_bwm_output_type.py:103: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_unsupported_type_rejected_at_forward_ingress
+_________________ test_rollout_returns_one_frame_per_action[1] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 1
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[1]
+_________________ test_rollout_returns_one_frame_per_action[2] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 2
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[2]
+_________________ test_rollout_returns_one_frame_per_action[3] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 3
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[3]
+_________________ test_rollout_returns_one_frame_per_action[4] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 4
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[4]
+________________ test_rollout_returns_one_frame_per_action[49] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 49
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[49]
+________________ test_rollout_returns_one_frame_per_action[50] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 50
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[50]
+________________ test_rollout_returns_one_frame_per_action[51] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 51
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[51]
+________________ test_rollout_returns_one_frame_per_action[52] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 52
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[52]
+________________ test_rollout_returns_one_frame_per_action[53] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 53
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[53]
+________________ test_rollout_returns_one_frame_per_action[143] ________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 143
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+>       frames = example.rollout(omni, first_frame, action)
+                 ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:65: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[143]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[50-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 50, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[50-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[51-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 51, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[51-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[52-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 52, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[52-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[53-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 53, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[53-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[2-13] _______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 2, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[2-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[4-13] _______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-a548404/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 4, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+>       example.rollout(omni, first_frame, action)
+        ^^^^^^^^^^^^^^^
+E       AttributeError: module 'bwm_world_model' has no attribute 'rollout'
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:79: AttributeError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[4-13]
+=============================== warnings summary ===============================
+../venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  <scratch>/venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2383
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2383: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    a_major_mode: tcgen05.OperandMajorMode,
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2385
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gemm/kernels/grouped_gemm_masked_blackwell.py:2385: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    b_major_mode: tcgen05.OperandMajorMode,
+
+../venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99
+../venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99
+  <scratch>/venv-omni/lib/python3.12/site-packages/flashinfer/gdn_kernels/blackwell/gated_delta_net_chunked.py:99: DeprecationWarning: tcgen05.OperandMajorMode is deprecated, use cute.nvgpu.OperandMajorMode instead
+    from cutlass.cute.nvgpu.tcgen05 import OperandMajorMode
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--- Running Summary
+=========================== short test summary info ============================
+FAILED tests/diffusion/models/bwm/test_bwm_output_type.py::test_latent_passes_through_unchanged
+FAILED tests/diffusion/models/bwm/test_bwm_output_type.py::test_pt_returns_tensor
+FAILED tests/diffusion/models/bwm/test_bwm_output_type.py::test_pil_returns_frames
+FAILED tests/diffusion/models/bwm/test_bwm_output_type.py::test_unsupported_type_rejected_by_hook
+FAILED tests/diffusion/models/bwm/test_bwm_output_type.py::test_unsupported_type_rejected_at_forward_ingress
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[1]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[2]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[3]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[4]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[49]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[50]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[51]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[52]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[53]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[143]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[50-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[51-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[52-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[53-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[2-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[4-13]
+21 failed, 2 passed, 18 warnings in 2.57s

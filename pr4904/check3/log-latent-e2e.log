@@ -1,0 +1,153 @@
+INFO 10-16 19:38:53 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-16 19:38:54 [omni_base.py:167] [Omni] Initializing with model <scratch>/models/BWM
+INFO 10-16 19:38:54 [async_omni_engine.py:239] [AsyncOmniEngine] Initializing with model <scratch>/models/BWM
+INFO 10-16 19:38:55 [async_omni_engine.py:301] [AsyncOmniEngine] Launching Orchestrator thread with 1 stages
+INFO 10-16 19:38:55 [stage_init_utils.py:443] [stage_init] Set VLLM_WORKER_MULTIPROC_METHOD=spawn
+INFO 10-16 19:38:55 [multiproc_executor.py:188] Starting server...
+INFO 10-16 19:39:02 [patch.py:252] NVFP4 W4A4 weight_scale NaN-clamp: installed.
+INFO 10-16 19:39:03 [diffusion_worker.py:776] Worker 0 created result MessageQueue
+INFO 10-16 19:39:03 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 10-16 19:39:03 [vllm.py:1006] Asynchronous scheduling is enabled.
+INFO 10-16 19:39:03 [kernel.py:276] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-16 19:39:03 [diffusion_worker.py:291] Final IR op priority after setting vLLM-Omni overrides: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-16 19:39:03 [diffusion_worker.py:303] Worker 0: Initialized device and distributed environment.
+INFO 10-16 19:39:03 [parallel_state.py:603] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+INFO 10-16 19:39:03 [parallel_state.py:645] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+The config attributes {'clip_output': False} were passed to DistributedAutoencoderKLWan, but are not expected and will be ignored. Please verify your config.json configuration file.
+INFO 10-16 19:39:04 [selector.py:87] Resolved diffusion attention backend 'FLASH_ATTN' for role='self' via platform default
+INFO 10-16 19:39:04 [selector.py:87] Resolved diffusion attention backend 'FLASH_ATTN' for role='cross' via platform default
+
+Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:01<00:00,  1.48s/it]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:01<00:00,  1.48s/it]
+
+
+Multi-thread loading shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.87it/s]
+
+Multi-thread loading shards: 100% Completed | 1/1 [00:00<00:00,  5.86it/s]
+
+INFO 10-16 19:39:06 [diffusers_loader.py:428] Loading weights took 1.65 seconds
+INFO 10-16 19:39:06 [diffusion_model_runner.py:209] Model loading took 10.7307 GiB and 3.407551 seconds
+INFO 10-16 19:39:06 [diffusion_model_runner.py:214] Model runner: Model loaded successfully.
+INFO 10-16 19:39:06 [diffusion_model_runner.py:288] Model runner: Initialization complete.
+INFO 10-16 19:39:06 [diffusion_worker.py:361] Worker 0: Process-scoped GPU memory after model loading: 11.34 GiB.
+INFO 10-16 19:39:06 [manager.py:96] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+INFO 10-16 19:39:06 [diffusion_worker.py:252] Worker 0: Initialization complete.
+INFO 10-16 19:39:06 [diffusion_worker.py:1012] Worker 0: Scheduler loop started.
+INFO 10-16 19:39:06 [diffusion_worker.py:904] Worker 0 ready to receive requests via shared memory
+INFO 10-16 19:39:06 [diffusion_engine.py:821] Skipping dummy warmup run (num_frames=0)
+INFO 10-16 19:39:06 [inline_stage_diffusion_client.py:72] [InlineStageDiffusionClient] stage-0 [rep-0] initialized inline (batch_size=1)
+INFO 10-16 19:39:06 [stage_runtime.py:656] [StageRuntime] Stage 0 replica 0 initialized (diffusion, batch_size=1)
+INFO 10-16 19:39:06 [orchestrator.py:332] [Orchestrator] Starting event loop
+INFO 10-16 19:39:06 [async_omni_engine.py:328] [AsyncOmniEngine] Orchestrator ready with 1 stages
+INFO 10-16 19:39:06 [omni_base.py:185] [Omni] AsyncOmniEngine initialized in 12.23 seconds
+INFO 10-16 19:39:06 [omni_base.py:205] [Omni] Initialized with 1 stages for model <scratch>/models/BWM
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  2%|▏         | 1/50 [00:00<00:24,  2.01it/s]
+  6%|▌         | 3/50 [00:00<00:08,  5.71it/s]
+ 10%|█         | 5/50 [00:00<00:06,  7.30it/s]
+ 14%|█▍        | 7/50 [00:01<00:05,  8.23it/s]
+ 18%|█▊        | 9/50 [00:01<00:04,  8.84it/s]
+ 22%|██▏       | 11/50 [00:01<00:04,  8.95it/s]
+ 24%|██▍       | 12/50 [00:01<00:04,  9.07it/s]
+ 26%|██▌       | 13/50 [00:01<00:04,  9.23it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.38it/s]
+ 32%|███▏      | 16/50 [00:01<00:03,  9.66it/s]
+ 34%|███▍      | 17/50 [00:02<00:03,  9.70it/s]
+ 36%|███▌      | 18/50 [00:02<00:03,  9.77it/s]
+ 38%|███▊      | 19/50 [00:02<00:03,  9.74it/s]
+ 40%|████      | 20/50 [00:02<00:03,  9.67it/s]
+ 42%|████▏     | 21/50 [00:02<00:03,  9.63it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.65it/s]
+ 46%|████▌     | 23/50 [00:02<00:02,  9.70it/s]
+ 48%|████▊     | 24/50 [00:02<00:02,  9.74it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02,  9.85it/s]
+ 56%|█████▌    | 28/50 [00:03<00:02,  9.91it/s]
+ 58%|█████▊    | 29/50 [00:03<00:02,  9.87it/s]
+ 60%|██████    | 30/50 [00:03<00:02,  9.78it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.73it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.70it/s]
+ 66%|██████▌   | 33/50 [00:03<00:01,  9.72it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01,  9.74it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.77it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01,  9.77it/s]
+ 76%|███████▌  | 38/50 [00:04<00:01,  9.80it/s]
+ 78%|███████▊  | 39/50 [00:04<00:01,  9.76it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.75it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.74it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.73it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.74it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00,  9.75it/s]
+ 90%|█████████ | 45/50 [00:04<00:00,  9.74it/s]
+ 92%|█████████▏| 46/50 [00:05<00:00,  9.73it/s]
+ 94%|█████████▍| 47/50 [00:05<00:00,  9.77it/s]
+ 96%|█████████▌| 48/50 [00:05<00:00,  9.76it/s]
+ 98%|█████████▊| 49/50 [00:05<00:00,  9.75it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.72it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.21it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:07<00:00,  7.44s/it]
+Processed prompts: 100%|██████████| 1/1 [00:07<00:00,  7.44s/it]
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/50 [00:00<?, ?it/s]
+  4%|▍         | 2/50 [00:00<00:03, 14.98it/s]
+  8%|▊         | 4/50 [00:00<00:03, 11.93it/s]
+ 12%|█▏        | 6/50 [00:00<00:03, 11.01it/s]
+ 16%|█▌        | 8/50 [00:00<00:03, 10.58it/s]
+ 20%|██        | 10/50 [00:00<00:03, 10.00it/s]
+ 24%|██▍       | 12/50 [00:01<00:03,  9.95it/s]
+ 28%|██▊       | 14/50 [00:01<00:03,  9.94it/s]
+ 32%|███▏      | 16/50 [00:01<00:03,  9.93it/s]
+ 34%|███▍      | 17/50 [00:01<00:03,  9.91it/s]
+ 36%|███▌      | 18/50 [00:01<00:03,  9.86it/s]
+ 38%|███▊      | 19/50 [00:01<00:03,  9.72it/s]
+ 40%|████      | 20/50 [00:01<00:03,  9.67it/s]
+ 42%|████▏     | 21/50 [00:02<00:03,  9.66it/s]
+ 44%|████▍     | 22/50 [00:02<00:02,  9.66it/s]
+ 46%|████▌     | 23/50 [00:02<00:02,  9.70it/s]
+ 48%|████▊     | 24/50 [00:02<00:02,  9.72it/s]
+ 52%|█████▏    | 26/50 [00:02<00:02,  9.83it/s]
+ 54%|█████▍    | 27/50 [00:02<00:02,  9.83it/s]
+ 56%|█████▌    | 28/50 [00:02<00:02,  9.78it/s]
+ 58%|█████▊    | 29/50 [00:02<00:02,  9.69it/s]
+ 60%|██████    | 30/50 [00:02<00:02,  9.66it/s]
+ 62%|██████▏   | 31/50 [00:03<00:01,  9.66it/s]
+ 64%|██████▍   | 32/50 [00:03<00:01,  9.68it/s]
+ 66%|██████▌   | 33/50 [00:03<00:01,  9.69it/s]
+ 68%|██████▊   | 34/50 [00:03<00:01,  9.70it/s]
+ 70%|███████   | 35/50 [00:03<00:01,  9.78it/s]
+ 72%|███████▏  | 36/50 [00:03<00:01,  9.83it/s]
+ 74%|███████▍  | 37/50 [00:03<00:01,  9.88it/s]
+ 76%|███████▌  | 38/50 [00:03<00:01,  9.77it/s]
+ 78%|███████▊  | 39/50 [00:03<00:01,  9.71it/s]
+ 80%|████████  | 40/50 [00:04<00:01,  9.67it/s]
+ 82%|████████▏ | 41/50 [00:04<00:00,  9.69it/s]
+ 84%|████████▍ | 42/50 [00:04<00:00,  9.74it/s]
+ 86%|████████▌ | 43/50 [00:04<00:00,  9.79it/s]
+ 88%|████████▊ | 44/50 [00:04<00:00,  9.77it/s]
+ 92%|█████████▏| 46/50 [00:04<00:00,  9.87it/s]
+ 94%|█████████▍| 47/50 [00:04<00:00,  9.85it/s]
+ 96%|█████████▌| 48/50 [00:04<00:00,  9.81it/s]
+ 98%|█████████▊| 49/50 [00:04<00:00,  9.73it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.68it/s]
+100%|██████████| 50/50 [00:05<00:00,  9.91it/s]
+
+Processed prompts: 100%|██████████| 1/1 [00:05<00:00,  5.21s/it]
+Processed prompts: 100%|██████████| 1/1 [00:05<00:00,  5.21s/it]
+The config attributes {'clip_output': False} were passed to AutoencoderKLWan, but are not expected and will be ignored. Please verify your config.json configuration file.
+{"np_type": "ndarray", "np_shape": [1, 57, 480, 640, 3], "latent_type": "Tensor", "latent_shape": [1, 48, 15, 30, 40], "latent_dtype": "torch.float32", "latent_finite": true, "decoded_shape": [1, 57, 480, 640, 3], "decoded_vs_np_max_abs": 0.0390625, "decoded_vs_np_mean_abs": 0.0009598886827006936, "decoded_vs_np_psnr_db": 56.755122898953154}
+INFO 10-16 19:39:21 [async_omni_engine.py:1502] [AsyncOmniEngine] Shutting down Orchestrator
+INFO 10-16 19:39:21 [orchestrator.py:420] [Orchestrator] Received shutdown signal
+INFO 10-16 19:39:21 [orchestrator.py:1638] [Orchestrator] Shutting down all 1 client(s)
+INFO 10-16 19:39:21 [diffusion_worker.py:944] Worker 0: Received shutdown message
+INFO 10-16 19:39:21 [diffusion_worker.py:965] event loop terminated.
+INFO 10-16 19:39:21 [diffusion_worker.py:1035] Worker 0: Shutdown complete.
+INFO 10-16 19:39:23 [stage_pool.py:1204] [StagePool] Stage 0 replica 0 shut down
+INFO 10-16 19:39:23 [cumem.py:206] CuMemAllocator: sleep freed 0.00 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 0.00 GiB is discarded directly.

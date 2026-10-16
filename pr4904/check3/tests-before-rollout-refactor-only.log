@@ -1,0 +1,251 @@
+.FFF.FFF..FFF.FF                                                         [100%]
+=================================== FAILURES ===================================
+_________________ test_rollout_returns_one_frame_per_action[2] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 2
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 1 == 2
+E        +  where 1 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...     ...,\n        [255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255]]], shape=(32, 48, 3), dtype=uint8)])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[2]
+_________________ test_rollout_returns_one_frame_per_action[3] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 3
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 1 == 3
+E        +  where 1 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...     ...,\n        [255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255]]], shape=(32, 48, 3), dtype=uint8)])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[3]
+_________________ test_rollout_returns_one_frame_per_action[4] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 4
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 1 == 4
+E        +  where 1 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...     ...,\n        [255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255]]], shape=(32, 48, 3), dtype=uint8)])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[4]
+________________ test_rollout_returns_one_frame_per_action[50] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 50
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 49 == 50
+E        +  where 49 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...\n        ...,\n        [13, 13, 13],\n        [13, 13, 13],\n        [13, 13, 13]]], shape=(32, 48, 3), dtype=uint8), ...])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[50]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+________________ test_rollout_returns_one_frame_per_action[51] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 51
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 49 == 51
+E        +  where 49 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...\n        ...,\n        [13, 13, 13],\n        [13, 13, 13],\n        [13, 13, 13]]], shape=(32, 48, 3), dtype=uint8), ...])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[51]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+________________ test_rollout_returns_one_frame_per_action[52] _________________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 52
+
+    @pytest.mark.parametrize("total_frames", [1, 2, 3, 4, 49, 50, 51, 52, 53, 143])
+    def test_rollout_returns_one_frame_per_action(example, total_frames):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.full((HEIGHT, WIDTH, 3), 255, dtype=np.uint8)
+        action = np.random.default_rng(0).uniform(-1, 1, (total_frames, ACTION_DIM)).astype(np.float32)
+    
+        frames = example.rollout(omni, first_frame, action)
+    
+>       assert len(frames) == total_frames
+E       assert 49 == 52
+E        +  where 49 = len([array([[[255, 255, 255],\n        [255, 255, 255],\n        [255, 255, 255],\n        ...,\n        [255, 255, 255],\n    ...\n        ...,\n        [13, 13, 13],\n        [13, 13, 13],\n        [13, 13, 13]]], shape=(32, 48, 3), dtype=uint8), ...])
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:67: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_rollout_returns_one_frame_per_action[52]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[50-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 50, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+        example.rollout(omni, first_frame, action)
+    
+>       assert omni.chunks[-1] == tail_chunk
+E       assert 57 == 13
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:81: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[50-13]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[51-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 51, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+        example.rollout(omni, first_frame, action)
+    
+>       assert omni.chunks[-1] == tail_chunk
+E       assert 57 == 13
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:81: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[51-13]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[52-13] ______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 52, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+        example.rollout(omni, first_frame, action)
+    
+>       assert omni.chunks[-1] == tail_chunk
+E       assert 57 == 13
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:81: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[52-13]
+----------------------------- Captured stdout call -----------------------------
+[window 0] history=0..0 future=[1, 49) chunk=57
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[2-13] _______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 2, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+        example.rollout(omni, first_frame, action)
+    
+>       assert omni.chunks[-1] == tail_chunk
+               ^^^^^^^^^^^^^^^
+E       IndexError: list index out of range
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:81: IndexError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[2-13]
+______________ test_short_tail_uses_padded_4n_plus_1_chunk[4-13] _______________
+
+example = <module 'bwm_world_model' from '<scratch>/vllm-omni-before2/examples/offline_inference/bwm/bwm_world_model.py'>
+total_frames = 4, tail_chunk = 13
+
+    @pytest.mark.parametrize(("total_frames", "tail_chunk"), [(50, 13), (51, 13), (52, 13), (53, 13), (2, 13), (4, 13)])
+    def test_short_tail_uses_padded_4n_plus_1_chunk(example, total_frames, tail_chunk):
+        omni = FakeOmni(example.NUM_HISTORY_FRAMES)
+        first_frame = np.zeros((HEIGHT, WIDTH, 3), dtype=np.uint8)
+        action = np.zeros((total_frames, ACTION_DIM), dtype=np.float32)
+    
+        example.rollout(omni, first_frame, action)
+    
+>       assert omni.chunks[-1] == tail_chunk
+               ^^^^^^^^^^^^^^^
+E       IndexError: list index out of range
+
+tests/diffusion/models/bwm/test_bwm_rollout.py:81: IndexError
+---------------------------- Captured stdout setup -----------------------------
+--- Running test: test_short_tail_uses_padded_4n_plus_1_chunk[4-13]
+=============================== warnings summary ===============================
+../venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  <scratch>/venv-omni/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+--- Running Summary
+=========================== short test summary info ============================
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[2]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[3]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[4]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[50]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[51]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_rollout_returns_one_frame_per_action[52]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[50-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[51-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[52-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[2-13]
+FAILED tests/diffusion/models/bwm/test_bwm_rollout.py::test_short_tail_uses_padded_4n_plus_1_chunk[4-13]
+11 failed, 5 passed, 14 warnings in 0.12s
