@@ -88,7 +88,7 @@ and stops at 141 frames).
 
 #### Notes
 
-- Memory usage (1x H200, bf16, peak over model load and all 3 windows of the command above): 16.6 GiB `torch.cuda.max_memory_allocated`, 18.8 GiB reserved, 19.5 GiB used per nvidia-smi; with a 672x896 input video, 22.2 GiB allocated, 26.1 GiB reserved, 26.8 GiB per nvidia-smi. `--enforce-eager` gives the same peaks
+- Memory usage (1x H200, bf16, command above): per-forward allocator peak, max over the 3 windows (the runner resets peak stats before each forward, so model load is excluded), 16.6 GiB `torch.cuda.max_memory_allocated` and 18.8 GiB `torch.cuda.max_memory_reserved`; whole-device peak sampled by nvidia-smi every 200 ms over the full run, 19.5 GiB. With a 672x896 input video: 22.2 GiB allocated, 26.1 GiB reserved, 26.8 GiB per nvidia-smi. `--enforce-eager` gives the same peaks
 - Release defaults: 57-frame chunks, 9 history frames, 50 denoise steps, flow shift 5.0, no CFG (`guidance_scale=1.0`)
 - Actions must be normalized to [-1, 1] with the dataset statistics client-side (`stat.json`, p01/p99 bounds); the example handles this
 - Known limitations: request-level serving only (interactive/session serving would build on the AR-diffusion engine, RFC #4366/#4480); single view; `eef_abs` (14-dim end-effector) action space as released
