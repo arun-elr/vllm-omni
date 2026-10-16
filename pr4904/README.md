@@ -50,3 +50,7 @@ python harness/render.py --runs runs --results results.json --out .
 * The reference's `use_history_condition_noise_in_inference=True` is a no-op in the released rollout: the initial `latents` tensor is the `noise` tensor (same storage), the history VAE latents are written into it in place, so the "re-noised" history equals the clean history (`logs/debug-histnoise.log`). The reference with the flag off is bit-identical to the reference as released (`results.json`, kind `reference-flag`).
 * The PR example carries generated history frames as truncated uint8; the reference carries floats. Matching that one representation (`ref-*-quantcarry`) brings fp32 windows 1 and 2 to the window-0 level.
 * On the full 143-frame episode the PR example also generates frames 141 and 142 (last window padded to 57 with the final action); the reference stops at 141.
+
+## Recipe command: output and peak memory
+
+`harness/mem_run.sh` runs the recipe's command as documented (480x640 demo input, default compile), the same command with `--enforce-eager`, and the same command on a 672x896 copy of the demo episode (video upscaled bilinear, same actions). Peaks come from `harness/memhook/sitecustomize.py`, a read-only hook in the diffusion worker that logs the process-lifetime `torch.cuda.max_memory_allocated` and `max_memory_reserved` after each window, and from nvidia-smi sampled every 200 ms. Results are in `mem/summary-*.json`, with full logs alongside.

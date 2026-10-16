@@ -1,0 +1,3 @@
+{"time": 1792171455.3078072, "seconds": 18.41, "height": 480, "width": 640, "num_frames": 57, "dtype": "torch.bfloat16", "max_memory_allocated_gib": 16.601, "max_memory_reserved_gib": 18.828}
+{"time": 1792171461.2794323, "seconds": 5.35, "height": 480, "width": 640, "num_frames": 57, "dtype": "torch.bfloat16", "max_memory_allocated_gib": 16.603, "max_memory_reserved_gib": 18.828}
+{"time": 1792171467.2473369, "seconds": 5.369, "height": 480, "width": 640, "num_frames": 57, "dtype": "torch.bfloat16", "max_memory_allocated_gib": 16.603, "max_memory_reserved_gib": 18.828}
