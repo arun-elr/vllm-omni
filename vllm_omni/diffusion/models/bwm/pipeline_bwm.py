@@ -72,6 +72,20 @@ logger = logging.getLogger(__name__)
 DEFAULT_NUM_INFERENCE_STEPS = 50
 DEFAULT_FLOW_SHIFT = 5.0
 DEFAULT_ACTION_DIM = 14
+SUPPORTED_OUTPUT_TYPES = ("np", "pt", "pil", "latent")
+
+
+def resolve_output_type(sampling_params: Any) -> str:
+    """Resolve the requested output type (``None`` means ``np``).
+
+    DiffusionEngine passes the request's type to the post-process hook only
+    through ``sampling_params``, so ``forward`` and the hook both resolve it
+    here; unsupported types are rejected before any compute.
+    """
+    output_type = getattr(sampling_params, "output_type", None) or "np"
+    if output_type not in SUPPORTED_OUTPUT_TYPES:
+        raise ValueError(f"BWM supports output_type in {SUPPORTED_OUTPUT_TYPES}, got {output_type!r}")
+    return output_type
 
 
 def resolve_num_frames(action_frames: int, requested: int | None) -> int:
@@ -113,7 +127,9 @@ def get_bwm_post_process_func(od_config: OmniDiffusionConfig):
 
     video_processor = VideoProcessor(vae_scale_factor=16)
 
-    def post_process_func(video: torch.Tensor, output_type: str = "np", sampling_params=None):
+    def post_process_func(video: torch.Tensor, output_type: str | None = None, sampling_params=None):
+        if output_type is None:
+            output_type = resolve_output_type(sampling_params)
         if output_type == "latent":
             return video
         return {"video": video_processor.postprocess_video(video, output_type=output_type)}
@@ -298,6 +314,7 @@ class BoundlessWorldModelPipeline(
     def forward(self, req: DiffusionRequestBatch) -> DiffusionOutput:
         if len(req.prompts) != 1:
             raise ValueError("BWM supports a single request at a time.")
+        output_type = resolve_output_type(req.sampling_params)
         prompt = req.prompts[0]
         multi_modal_data = prompt.get("multi_modal_data", {}) if not isinstance(prompt, str) else {}
 
@@ -329,7 +346,6 @@ class BoundlessWorldModelPipeline(
         height = req.sampling_params.height or history_video.shape[-2]
         width = req.sampling_params.width or history_video.shape[-1]
         num_steps = req.sampling_params.num_inference_steps or DEFAULT_NUM_INFERENCE_STEPS
-        output_type = req.sampling_params.output_type or "np"
 
         mod_value = self.vae_scale_factor_spatial * 2  # spatial compression x patch size
         if height % mod_value != 0 or width % mod_value != 0:
