@@ -77,13 +77,18 @@ python examples/offline_inference/bwm/bwm_world_model.py \
 #### Verification
 
 The script prints one line per autoregressive window and writes
-`bwm_rollout.mp4` (~140 frames at 672x896). Compare against the reference
+`bwm_rollout.mp4`: 143 frames at 480x640 for demo episode 0, in 3 windows.
+The output resolution follows the input frame (the demo video is 480x640;
+supply a 672x896 video to render at 672x896), and the frame count follows
+the episode's 143 action frames (the last window's chunk is padded to 57
+frames with the final action, then trimmed). Compare against the reference
 implementation's output for the same episode
-(`bash scripts/infer_example.sh` in the BWM repo).
+(`bash scripts/infer_example.sh` in the BWM repo, which renders at 672x896
+and stops at 141 frames).
 
 #### Notes
 
-- Memory usage: ~30 GB peak (bf16 DiT ~10 GB + VAE + activations at 672x896x57 frames)
+- Memory usage (1x H200, bf16, peak over model load and all 3 windows of the command above): 16.6 GiB `torch.cuda.max_memory_allocated`, 18.8 GiB reserved, 19.5 GiB used per nvidia-smi; with a 672x896 input video, 22.2 GiB allocated, 26.1 GiB reserved, 26.8 GiB per nvidia-smi. `--enforce-eager` gives the same peaks
 - Release defaults: 57-frame chunks, 9 history frames, 50 denoise steps, flow shift 5.0, no CFG (`guidance_scale=1.0`)
 - Actions must be normalized to [-1, 1] with the dataset statistics client-side (`stat.json`, p01/p99 bounds); the example handles this
 - Known limitations: request-level serving only (interactive/session serving would build on the AR-diffusion engine, RFC #4366/#4480); single view; `eef_abs` (14-dim end-effector) action space as released
